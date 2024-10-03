@@ -29,6 +29,19 @@ def character_line(t):
     move_character_y = (1 - t) * y + t * arrow_y
     return move_character_x, move_character_y
 
+def draw_character(move_character_x, move_character_y):
+    global frame, dir
+
+    if arrow_x > x:
+        direction = 1
+    else:
+        direction = -1
+
+    if direction == 1:
+        character.clip_draw(frame * 100, 100 * 1, 100, 100, move_character_x, move_character_y)
+    else:
+        character.clip_composite_draw(frame * 100, 100 * 1, 100, 100, 0, 'h', move_character_x, move_character_y, 100, 100)
+
 def character_move_to_arrow():
     global x, y, arrow_x, arrow_y, frame
 
@@ -39,7 +52,7 @@ def character_move_to_arrow():
         clear_canvas()
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
         draw_hand_arrow()
-        character.clip_draw(frame * 100, 100 * 1, 100, 100, move_character_x, move_character_y)
+        draw_character(move_character_x, move_character_y)
         update_canvas()
         handle_events()
         frame = (frame + 1) % 8
