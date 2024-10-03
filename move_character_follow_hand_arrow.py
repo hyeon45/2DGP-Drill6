@@ -45,7 +45,7 @@ def draw_character(move_character_x, move_character_y):
 def character_move_to_arrow():
     global x, y, arrow_x, arrow_y, frame
 
-    for i in range(0, 100+1):
+    for i in range(0, 100+1, 5):
         t = i / 100
         move_character_x, move_character_y = character_line(t)
 
@@ -53,6 +53,7 @@ def character_move_to_arrow():
         TUK_ground.draw(TUK_WIDTH // 2, TUK_HEIGHT // 2)
         draw_hand_arrow()
         draw_character(move_character_x, move_character_y)
+
         update_canvas()
         handle_events()
         frame = (frame + 1) % 8
